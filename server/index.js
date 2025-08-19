@@ -5,9 +5,12 @@ const cors = require('cors')
 const PORT = process.env.PORT || 3000
 const {githubLogin} = require('./routes/githubLogin')
 const {privateDashboard} = require('./routes/privateDashboard')
+const connectDB = require('./Database/dbConnection')
 
 app.use(cors())
 app.use(express.json())
+
+connectDB()
 
 app.get('/', (req, res) => {
   console.log('Received a request at /')
