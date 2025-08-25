@@ -1,1 +1,12 @@
 GET http://localhost:3000/githubLogin
+
+###
+POST http://localhost:3000/emailSignup
+Content-Type: application/json
+
+{
+    "email": "nandinidixit0409@gmail.com",
+    "name": "Nandini Dixit",
+    "password": "Nandini@123",
+    "userName": "nandini0409"
+}

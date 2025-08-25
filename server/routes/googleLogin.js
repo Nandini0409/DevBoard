@@ -4,7 +4,7 @@ const randomString = () => {
   return crypto.randomBytes(20).toString('hex')
 }
 
-const githubLogin = async (req, res) => {
+const googleLogin = async (req, res) => {
   console.log('GitHub login route accessed')
   const state = randomString()
   req.session.oauthState = state
@@ -12,13 +12,13 @@ const githubLogin = async (req, res) => {
   console.log('Session state set to:', req.session.oauthState)
   const params = new URLSearchParams({
     client_id: process.env.OAUTH_CLIENT_ID,
-    redirect_uri: 'http://localhost:3000/privateDashboard',
+    redirect_uri: `${process.env.HOST_URL}/callback`,
+    response_type: 'code',
     state: state,
-    scope: 'read:user user:email',
-    prompt: 'consent'
+    scope: 'profile email'
   })
-  res.redirect(`https://github.com/login/oauth/authorize?${params.toString()}`
+  res.redirect(`https://accounts.google.com/o/oauth2/v2/auth?${params.toString()}`
   )
 }
 
-module.exports = { githubLogin }
+module.exports = googleLogin
