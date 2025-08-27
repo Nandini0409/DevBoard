@@ -14,13 +14,13 @@ const callback = require('./routes/callback')
 const refresh = require('./routes/refresh')
 const emailLogin = require('./routes/emailLogin')
 
-const profile = require('./routes/profile')
+const getProfile = require('./routes/getProfile')
+const updateProfile = require('./routes/updateProfile')
 
 app.use(cors(
   {
-    origin: process.env.HOST_URL,
+    origin: 'http://localhost:5173',
     credentials: true,
-    accessControlAllowOrigin: true,
   }
 ))
 app.use(express.json())
@@ -46,7 +46,8 @@ app.post('/emailLogin', (req, res) => { emailLogin(req, res) })
 app.get('/callback', (req, res) => { callback(req, res) })
 app.get('/refresh', (req, res) => { refresh(req, res) })
 
-app.get('/api/profile', (req, res)=>{profile(req, res)})
+app.get('/api/profile', (req, res) => { getProfile(req, res) })
+app.put('/api/profile', (req, res) => { updateProfile(req, res) })
 
 app.listen(PORT, () => {
   console.log('Server is running on http://localhost:3000')

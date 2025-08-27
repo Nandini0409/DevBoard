@@ -10,3 +10,16 @@ Content-Type: application/json
     "password": "Nandini@123",
     "userName": "nandini0409"
 }
+
+
+###
+PUT http://localhost:3000/api/profile
+Content-Type: application/json
+Cookie: access_jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YWM2MTVhZDEwYjBlYzE0YTMzYTJlMiIsImlhdCI6MTc1NjI4MzE3NCwiZXhwIjoxNzU2Mjg0MDc0fQ.l68cnKBH647lFjaxJO_QFIkRS-bHgMlq-YkBKZDtPh0
+
+{
+    "email": "hibihobi0409@gmail.com",
+    "name": "Nani Dixit",
+    "userName": "hobi0409",
+    "bio": "Hello! I am BTS ARMY."
+}

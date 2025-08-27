@@ -1,4 +1,4 @@
-// const Artisan = require('Database/models/artisans')
+const jwt = require('jsonwebtoken')
 const Artisan = require('../Database/models/artisans')
 const { passwordValidator } = require('../utilities/inputValidator')
 const verifyEmail = require('../utilities/emailVerification')
@@ -7,11 +7,13 @@ const emailSignup = async (req, res) => {
   const { email, name, password, userName } = req.body
   try {
     if (!name || !email || !password || !userName) {
+      console.log('Received incomplete signup data:', req.body)
       return res.status(400).json({ message: 'User Info fields can not be empty!' })
     }
     
     const alreadyExists = await Artisan.findOne({ email: email })
     if (!passwordValidator(password)) {
+      console.log('Invalid password attempt during signup for email:', email)
       return res.status(400).json({ message: 'Invalid password! should be minimum 8 character long and have atleast 1 special character.' })
     }
 
@@ -42,7 +44,7 @@ const emailSignup = async (req, res) => {
       sameSite: "lax",
       maxAge: 15 * 60 * 1000,
     })
-
+    console.log('New user signed up:', newArtisan)
     return res.status(201).json({ message: 'User created successfully!' })
   }
   catch (err) {

@@ -5,7 +5,7 @@ const artisanSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   name: { type: String, required: true },
   password: { type: String, required: function () { return this.userAuthType === 'email' } },
-  userName: { type: String, required: true, unique: true },
+  userName: { type: String, required: true},
   bio: { type: String },
   userAuthType: { type: String, enum: ['google', 'email'], required: true },
 })
