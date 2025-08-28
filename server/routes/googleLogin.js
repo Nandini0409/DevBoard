@@ -17,8 +17,8 @@ const googleLogin = async (req, res) => {
     state: state,
     scope: 'profile email'
   })
-  res.redirect(`https://accounts.google.com/o/oauth2/v2/auth?${params.toString()}`
-  )
+res.json({params: params.toString()})
+// res.redirect(`https://accounts.google.com/o/oauth2/v2/auth?${params.toString()}`)
 }
 
 module.exports = googleLogin

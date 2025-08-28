@@ -3,8 +3,10 @@ const jwt = require('jsonwebtoken')
 
 const callback = async (req, res) => {
   const { code, state } = req.query
+  console.log(req.session)
   if (!code || !state) { return res.redirect('/googleLogin') }
   if (state !== req.session.oauthState) {
+    console.log('State mismatch: expected', req.session.oauthState, 'but got', state)
     return res.status(403).send('Invalid state parameter')
   }
 
