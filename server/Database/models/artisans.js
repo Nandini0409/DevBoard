@@ -5,9 +5,23 @@ const artisanSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   name: { type: String, required: true },
   password: { type: String, required: function () { return this.userAuthType === 'email' } },
-  userName: { type: String, required: true},
+  userName: { type: String, required: true },
+  profileImage: {
+    url: { type: String },
+    public_id: { type: String }
+  },
   bio: { type: String },
   userAuthType: { type: String, enum: ['google', 'email'], required: true },
+  socialLinks:
+  {
+    instagram: { type: String },
+    linkedin: { type: String },
+    website: { type: String },
+    behance: { type: String },
+    dribbble: { type: String },
+    workemail: { type: String },
+  }
+
 })
 
 artisanSchema.pre('save', async function (next) {
