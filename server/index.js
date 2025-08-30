@@ -19,6 +19,7 @@ const emailLogin = require('./routes/emailLogin')
 const getProfile = require('./routes/getProfile')
 const updateProfile = require('./routes/updateProfile')
 const updateSocials = require('./routes/updateSocials')
+const uploadArtwork = require('./routes/uploadArtwork')
 
 app.use(cors(
   {
@@ -52,6 +53,7 @@ app.get('/refresh', (req, res) => { refresh(req, res) })
 app.get('/api/profile', (req, res) => { getProfile(req, res) })
 app.put('/api/profile', upload.single('profileImage'), (req, res) => { updateProfile(req, res) })
 app.put('/api/profile/socials', (req, res) => { updateSocials(req, res) })
+app.post('/api/artwork', upload.single('artwork'), (req, res) => { uploadArtwork(req, res) })
 
 app.listen(PORT, () => {
   console.log('Server is running on http://localhost:3000')

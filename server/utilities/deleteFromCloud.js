@@ -1,7 +1,6 @@
 const cloudConfig = require('./cloudinaryConfig')
-const streamifier = require('streamifier')
 
-const uploadToCloud = async (file, folder) => {
+const deleteFromCloud = async (file, folder) => {
     return new Promise((resolve, reject) => {
       const uploadStream = cloudConfig.uploader.upload_stream(
       { resource_type: 'image', folder: folder },
@@ -14,4 +13,4 @@ const uploadToCloud = async (file, folder) => {
     })
 }
 
-module.exports = uploadToCloud
+module.exports = deleteFromCloud

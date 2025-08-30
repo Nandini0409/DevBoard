@@ -14,7 +14,7 @@ const updateProfile = async (req, res) => {
     if (!artisan) {
       return res.status(404).json({ message: 'User not found!', data: artisan })
     }
-    const uploadResult = await uploadToCloud(req.file)
+    const uploadResult = await uploadToCloud(req.file, 'profile_images')
 
     artisan.email = req.body.email || artisan.email,
     artisan.name = req.body.name || artisan.name,
