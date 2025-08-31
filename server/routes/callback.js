@@ -1,5 +1,6 @@
 const Artisan = require('../Database/models/artisans')
-const jwt = require('jsonwebtoken')
+const {generateToken, setAuthCookie} = require('../utilities/tokenUtils')
+
 
 const callback = async (req, res) => {
   const { code, state } = req.query
@@ -44,24 +45,12 @@ const callback = async (req, res) => {
     existingArtisan = newArtisan
   }
 
-  const accessToken = jwt.sign({ id: existingArtisan._id }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '15m' })
-  const refreshToken = jwt.sign({ id: existingArtisan._id }, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '7d' })
+  const accessToken = generateToken(existingArtisan._id, 'access')
+  setAuthCookie(accessToken, 'access', res)
+  const refreshToken = generateToken(existingArtisan._id, 'refresh')
+  setAuthCookie(refreshToken, 'refresh', res)
 
-  res.cookie('refresh_jwt', refreshToken, {
-    httpOnly: true,
-    secure: false,
-    sameSite: "lax",
-    maxAge: 7 * 24 * 60 * 60 * 1000,
-  })
-  res.cookie('access_jwt', accessToken, {
-    httpOnly: false,
-    secure: false,
-    sameSite: "lax",
-    maxAge: 15 * 60 * 1000,
-  })
-  console.log(accessToken,   refreshToken)
-
-  res.redirect('/privateDashboard')
+  res.redirect(`${process.env.CLIENT_URI}/privateDashboard`)
 }
 
 module.exports = callback 

@@ -23,3 +23,11 @@ Cookie: access_jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YWM2MTVhZDEw
     "userName": "hobi0409",
     "bio": "Hello! I am BTS ARMY."
 }
+
+###
+POST http://localhost:3000/api/deleteImg
+Content-Type: application/json
+
+{
+    "public_id": "profile_images/ekidsftkznlfzmb4iqah"
+}

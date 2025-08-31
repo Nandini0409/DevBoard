@@ -25,7 +25,7 @@ const uploadArtwork = async (req, res) => {
       }
       artisanArtworks.images.push(artwork)
       await artisanArtworks.save()
-      return res.status(201).json({message: "Artwork uploaded successfully"})
+      return res.status(201).json({message: "Artwork uploaded successfully", data: artwork})
     }
     catch (e) {
       return res.status(500).json({ message: e.message })
