@@ -6,23 +6,13 @@ const cors = require('cors')
 const connectDB = require('./Database/dbConnection')
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
-const multer = require('multer')
-const upload = multer({ storage: multer.memoryStorage() })
 
-const googleLogin = require('./routes/googleLogin')
-const privateDashboard = require('./routes/privateDashboard')
-const emailSignup = require('./routes/emailSignup')
-const callback = require('./routes/callback')
-const refresh = require('./routes/refresh')
-const emailLogin = require('./routes/emailLogin')
 
-const getProfile = require('./routes/getProfile')
-const updateProfile = require('./routes/updateProfile')
-const updateSocials = require('./routes/updateSocials')
-const getSocials = require('./routes/getSocials')
-const uploadArtwork = require('./routes/uploadArtwork')
-const getArtwork = require('./routes/getArtwork')
-const deleteImage = require('./routes/deleteImage')
+const authRoutes = require('./routes/authRoutes')
+const profileRoutes = require('./routes/profileRoutes')
+const artworkRoutes = require('./routes/artworkRoutes')
+const imageRoutes = require('./routes/imageRoutes')
+
 
 app.use(cors(
   {
@@ -41,25 +31,19 @@ app.use(session({
 
 connectDB()
 
-app.get('/', (req, res) => {
-  console.log('Received a request at /')
-  res.send('Hello, World!')
+app.use('/auth', authRoutes)  
+app.use('/users', profileRoutes)
+app.use('/artworks', artworkRoutes)
+app.use('/image', imageRoutes)
+
+app.use((err, req, res, next) => {
+  console.error(err)
+
+  res.status(err.status || 500).json({
+    success: false,
+    message: err.message || 'Internal Server Error',
+  })
 })
-
-app.get('/googleLogin', (req, res) => { googleLogin(req, res) })
-app.get('/privateDashboard', (req, res) => { privateDashboard(req, res) })
-app.post('/emailSignup', (req, res) => { emailSignup(req, res) })
-app.post('/emailLogin', (req, res) => { emailLogin(req, res) })
-app.get('/callback', (req, res) => { callback(req, res) })
-app.get('/refresh', (req, res) => { refresh(req, res) })
-
-app.get('/api/profile', (req, res) => { getProfile(req, res) })
-app.put('/api/profile', upload.single('profileImage'), (req, res) => { updateProfile(req, res) })
-app.put('/api/profile/socials', (req, res) => { updateSocials(req, res) })
-app.get('/api/profile/socials', (req, res)=>{getSocials(req, res)})
-app.get('/api/artwork', (req, res)=>{getArtwork(req, res)})
-app.post('/api/artwork', upload.single('artwork'), (req, res) => { uploadArtwork(req, res) })
-app.delete('/api/deleteImg/:public_id', (req, res) => { deleteImage(req, res) })
 
 app.listen(PORT, () => {
   console.log('Server is running on http://localhost:3000')

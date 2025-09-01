@@ -31,3 +31,7 @@ Content-Type: application/json
 {
     "public_id": "profile_images/ekidsftkznlfzmb4iqah"
 }
+
+
+###
+GET http://localhost:3000/api/profile

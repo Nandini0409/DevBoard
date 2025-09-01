@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom"
 const LandingPage = ()=>{
   const navigate = useNavigate()
   const googleLoginHandler = async ()=>{
-    const response = await fetch('http://localhost:3000/googleLogin',{
+    const response = await fetch('http://localhost:3000/auth/googleLogin',{
       method: 'GET',
       credentials: 'include'
     })
