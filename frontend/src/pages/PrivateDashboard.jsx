@@ -1,14 +1,14 @@
-import AboutArtisan from '../components/sections/aboutArtisan'
-import SocialLinks from '../components/sections/addSocials'
-import AddArtworks from '../components/sections/addArtworks'
+// import AboutArtisan from '../components/sections/aboutArtisan'
+// import SocialLinks from '../components/sections/addSocials'
+// import AddArtworks from '../components/sections/addArtworks'
 
 const PrivateDashboard = () => {
   return (
     <>
-      <p> HIIi</p>
+      {/* <p> HIIi</p>
       <AboutArtisan />
       <AddArtworks />
-      <SocialLinks />
+      <SocialLinks /> */}
     </>
   )
 }
