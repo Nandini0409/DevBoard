@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom"
 import Header from "../components/layouts/Header"
-import Hero from "../components/sections/landingPageSec.jsx/Hero"
-import ProbSection from "../components/sections/landingPageSec.jsx/prob&solu"
-import Features from "../components/sections/landingPageSec.jsx/Features"
-import HowItWorks from "../components/sections/landingPageSec.jsx/howItWorks"
-import FinalCTA from "../components/sections/landingPageSec.jsx/FinalCTA"
+import Hero from "../components/sections/landingPageSection/Hero"
+import ProbSection from "../components/sections/landingPageSection/prob&solu"
+import Features from "../components/sections/landingPageSection/Features"
+import HowItWorks from "../components/sections/landingPageSection/howItWorks"
+import FinalCTA from "../components/sections/landingPageSection/FinalCTA"
 import Footer from "../components/layouts/Footer"
 
 const LandingPage = () => {
@@ -33,8 +33,3 @@ const LandingPage = () => {
 
 export default LandingPage
 
-{/* <h1>Landing Page</h1>
-<button onClick={googleLoginHandler}>Sign up with Google</button>
-<button onClick={navigate('/emailSignup')}>Sign up with Email</button>
-<p>Already have an account? Login:</p>
-<button onClick={navigate('/emailLogin')}>Sign up with Email</button> */}
