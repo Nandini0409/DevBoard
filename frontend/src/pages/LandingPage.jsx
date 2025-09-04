@@ -20,7 +20,7 @@ const LandingPage = () => {
 
   return (
     <>
-      <Header />
+      <Header showName={false}/>
       <Hero />
       <ProbSection/>
       <Features/>

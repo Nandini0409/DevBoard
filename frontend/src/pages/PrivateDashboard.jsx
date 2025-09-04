@@ -1,14 +1,15 @@
-// import AboutArtisan from '../components/sections/aboutArtisan'
-// import SocialLinks from '../components/sections/addSocials'
-// import AddArtworks from '../components/sections/addArtworks'
+import AboutArtisan from '../components/sections/privDashSection/aboutArtisan'
+import SocialLinks from '../components/sections/privDashSection/addSocials'
+import AddArtworks from '../components/sections/privDashSection/addArtworks'
+import Header from '../components/layouts/Header'
 
 const PrivateDashboard = () => {
   return (
     <>
-      {/* <p> HIIi</p>
+      <Header showName={true}/>
       <AboutArtisan />
       <AddArtworks />
-      <SocialLinks /> */}
+      <SocialLinks />
     </>
   )
 }
