@@ -19,7 +19,7 @@ const Dashboard = () => {
           </a>
         </div>
         <div id="updateLinks" className='flex flex-col'>
-          <a href='#' onClick={()=>{setFormType('artworks')}}><HomeIcon />Dashboard</a>
+          <a href='#' onClick={()=>{setFormType('artworks')}}><HomeIcon className='h-6'/>Dashboard</a>
           <a href='#' onClick={() => { setFormType('profile') }}>About me</a>
           <a href='#' onClick={() => { setFormType('artworkForm') }}>Artwork</a>
           <a href='#' onClick={() => { setFormType('socials') }}>Contact & Socials</a>
