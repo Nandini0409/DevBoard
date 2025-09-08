@@ -1,6 +1,6 @@
 const { verifyToken } = require('../utilities/tokenUtils')
 const Artwork = require('../Database/models/artwork')
-const deleteFromCloud = require('../utilities/deleteFromCloud')
+const {deleteFromCloud} = require('../utilities/cloudinaryUtils')
 
 const deleteImage = async (req, res, next) => {
   try {

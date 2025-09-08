@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom"
+
 const FinalCTA = () => {
+  const navigate = useNavigate()
   return (
     <section className="bg-gradient-to-b from-[#FAF5E9] to-[#fef2f2] py-20 px-6 text-center">
       <div className="max-w-3xl mx-auto">
@@ -11,7 +14,7 @@ const FinalCTA = () => {
           gives you the tools to showcase your work beautifully and connect with your audience—for free.
         </p>
 
-        <button className="bg-[#F22F1D] text-white text-lg font-semibold px-8 py-4 rounded-full shadow-md hover:bg-[#d81f1d] transition duration-300">
+        <button onClick={(e)=>{navigate('userRegistration')}} className="bg-[#F22F1D] text-white text-lg font-semibold px-8 py-4 rounded-full shadow-md hover:bg-[#d81f1d] transition duration-300">
           Create Your Free Portfolio
         </button>
       </div>

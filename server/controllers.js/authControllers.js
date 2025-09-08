@@ -4,6 +4,9 @@ const Artisan = require('../Database/models/artisans')
 const { generateToken, setAuthCookie, verifyToken } = require('../utilities/tokenUtils')
 const { passwordValidator } = require('../utilities/inputValidator')
 
+
+
+
 const googleLogin = async (req, res, next) => {
   try {
     const state = crypto.randomBytes(20).toString('hex')
@@ -29,14 +32,12 @@ const googleLogin = async (req, res, next) => {
 
 const callback = async (req, res, next) => {
   try {
-
     const { code, state } = req.query
     if (!code || !state) {
       const error = new Error('Missing code or state in query parameters')
       error.status = 400
       throw error
     }
-
     if (state !== req.session.oauthState) {
       const error = new Error('Invalid state parameter!')
       error.status = 403
@@ -97,7 +98,7 @@ const callback = async (req, res, next) => {
     const refreshToken = generateToken(existingArtisan._id, 'refresh')
     setAuthCookie(refreshToken, 'refresh', res)
 
-    res.redirect(`${process.env.CLIENT_URL}/privateDashboard`)
+    res.redirect(`${process.env.CLIENT_URL}/dashboard`)
   }
   catch (e) {
     next(e)

@@ -1,4 +1,18 @@
+const url = import.meta.env.VITE_URL
+
 export default function Register() {
+
+  const googleLogin = async ()=>{
+    const response = await fetch(`${url}/auth/google`,{
+      method: 'get',
+      credentials: 'include'
+    })
+    const jsonRespose = await response.json()
+    window.location = `https://accounts.google.com/o/oauth2/v2/auth?
+${jsonRespose.params}`
+    console.log(jsonRespose)
+  }
+
   return (
     <div className="min-h-screen flex w-[75vw] mx-auto my-10 shadow-xl rounded-2xl overflow-hidden">
       <div className="w-1/2 flex flex-col justify-center px-16 bg-[#f3ead4b2]">
@@ -10,7 +24,7 @@ export default function Register() {
           A better way for emerging artists to be seen.
         </p>
 
-        <button className="w-full flex items-center justify-center gap-3 bg-white border border-gray-300 text-gray-700 font-medium py-3 rounded-xl shadow-sm hover:shadow-md transition">
+        <button onClick={googleLogin} className="w-full flex items-center justify-center gap-3 bg-white border border-gray-300 text-gray-700 font-medium py-3 rounded-xl shadow-sm hover:shadow-md transition">
           <img src="images/gIcon.svg" alt="Google" className="w-5 h-5" />
           Sign in with Google
         </button>

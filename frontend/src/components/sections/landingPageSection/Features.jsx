@@ -30,7 +30,7 @@ const Features = () => {
 
 
   return (
-    <section className="relative bg-gradient-to-b from-[#FAF5E9] to-[#fef2f2] py-20 px-6">
+    <section id="features" className="relative bg-gradient-to-b from-[#FAF5E9] to-[#fef2f2] py-20 px-6">
       <div className="relative max-w-6xl mx-auto text-center mb-12">
         <h2 className="text-4xl sm:text-5xl font-extrabold text-[#222] mb-4">
           Modern Features, <span className="text-[#F22F1D]">Artist-First Design</span>

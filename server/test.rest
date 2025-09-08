@@ -1,4 +1,4 @@
-GET http://localhost:3000/githubLogin
+GET http://localhost:3000/google
 
 ###
 POST http://localhost:3000/emailSignup
