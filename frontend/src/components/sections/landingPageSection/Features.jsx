@@ -30,9 +30,9 @@ const Features = () => {
 
 
   return (
-    <section id="features" className="relative bg-gradient-to-b from-[#FAF5E9] to-[#fef2f2] py-20 px-6">
+    <section id="features" className="relative bg-gradient-to-b from-[#FAF5E9] to-[#fef2f2] py-10 sm:py-20 sm:px-6">
       <div className="relative max-w-6xl mx-auto text-center mb-12">
-        <h2 className="text-4xl sm:text-5xl font-extrabold text-[#222] mb-4">
+        <h2 className="text-3xl sm:text-5xl font-extrabold text-[#222] mb-4">
           Modern Features, <span className="text-[#F22F1D]">Artist-First Design</span>
         </h2>
         <p className="max-w-xl mx-auto text-gray-700 text-lg leading-relaxed">
@@ -40,24 +40,19 @@ const Features = () => {
         </p>
       </div>
 
-      <div className="grid md:grid-cols-3 w-[80vw] mx-auto grid-cols-1 gap-6 auto-rows-[200px]">
+      <div className="grid md:grid-cols-3 w-[90vw] mx-2 sm:mx-auto grid-cols-1 gap-6 auto-rows-[275px] sm:auto-rows-[225px]">
         {features.map((feature, index) => (
           <div
   key={index}
   className={`bg-gradient-to-br ${feature.bg} p-6 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition duration-300 flex flex-col justify-between ${feature.span || ""}`}
 >
   <div>
-    <span className="text-3xl mb-2 block">{feature.icon}</span>
-    <h3 className="text-xl font-bold text-[#1b5748] mb-2">
+    <span className="text-2xl sm:text-3xl mb-2 block">{feature.icon}</span>
+    <h3 className="text-md sm:text-xl font-bold text-[#1b5748] mb-2">
       {feature.title}
     </h3>
     <p className="text-gray-700 text-base">{feature.desc}</p>
   </div>
-  <a
-    href="#"
-    className="mt-4 text-sm font-medium text-[#1b5748] hover:underline"
-  >
-  </a>
 </div>
 
         ))}

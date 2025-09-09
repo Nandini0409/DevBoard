@@ -18,9 +18,9 @@ const HowItWorks = () => {
   ];
 
   return (
-    <section id="howItWorks" className="bg-[#eff5dc] py-20 px-6">
+    <section id="howItWorks" className="bg-[#eff5dc] py-8 sm:py-20 px-6">
       <div className="max-w-6xl mx-auto text-center mb-12">
-        <h2 className="text-4xl sm:text-5xl font-extrabold text-[#222] mb-4">
+        <h2 className="text-3xl sm:text-5xl font-extrabold text-[#222] mb-4">
           Create Your Portfolio in 3 Simple Steps
         </h2>
         <p className="text-lg text-gray-700 max-w-xl mx-auto leading-relaxed">
