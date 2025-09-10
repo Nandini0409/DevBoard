@@ -10,7 +10,7 @@ const Header = ({showName}) => {
       <nav className="relative z-10">
         <ul className="flex justify-between items-center sm:px-6 text-[white]">
           <li>
-            <img src="/images/logo3.png" width={80} alt="DevBoard Logo" />
+            <img src="/logo3.png" width={80} alt="DevBoard Logo" />
           </li>
           <li>
             {showName===true

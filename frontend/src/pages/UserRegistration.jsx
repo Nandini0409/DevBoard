@@ -25,7 +25,7 @@ ${jsonRespose.params}`
         </p>
 
         <button onClick={googleLogin} className="w-full flex items-center justify-center gap-3 bg-white border border-gray-300 text-gray-700 font-medium py-3 rounded-xl shadow-sm hover:shadow-md transition">
-          <img src="images/gIcon.svg" alt="Google" className="w-5 h-5" />
+          <img src="/gIcon.svg" alt="Google" className="w-5 h-5" />
           Sign in with Google
         </button>
 
