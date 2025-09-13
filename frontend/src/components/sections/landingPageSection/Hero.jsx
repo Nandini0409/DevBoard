@@ -4,7 +4,7 @@ const Hero = () => {
   const navigate = useNavigate()
   return (
     <>
-      <section className="relative h-[70vh] sm:h-[90vh] bg-[url('/heroBg.png')] bg-cover flex bg-center px-6">
+      <section className="relative h-[70vh] sm:h-[100vh] bg-[url('/heroBg.png')] bg-cover flex bg-center px-6">
       <div className="absolute inset-0 bg-gradient-to-b from-[#FFEDD5]/40 to-[#F87171]/20"></div>
         <div className="flex gap-4 flex-col w-[60vw] py-8 mx-auto text-center items-center">
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold drop-shadow-xl mb-6">
