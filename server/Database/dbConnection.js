@@ -1,13 +1,13 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
-const connectDB = ()=>{
+const connectDB = async ()=>{
   mongoose.connect(process.env.ATLAS_URI)
   .then(() => {
-    console.log('Connected to MongoDB');
+    console.log('Connected to MongoDB')
   })
   .catch((e) => {
     console.log(e)
-  });
+  })
 }
 
-module.exports = connectDB;
+module.exports = connectDB

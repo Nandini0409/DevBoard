@@ -14,7 +14,7 @@ const Dashboard = () => {
       <aside className="w-[15%] bg-white shadow-md flex flex-col justify-between items-center py-6">
         <div className="flex flex-col items-center gap-4">
           <a href="/">
-            <img width={70} src="/images/logo3.png" alt="logo" />
+            <img width={70} src="/logo3.png" alt="logo" />
           </a>
         </div>
 
@@ -70,7 +70,7 @@ const Dashboard = () => {
 
         <div className="flex flex-col items-center gap-2">
           <a href="/">
-            <img width={100} src="/images/helpCenterIcon2.png" alt="help icon" />
+            <img width={100} src="/helpCenterIcon2.png" alt="help icon" />
           </a>
           <p className="text-xs text-gray-500 text-center px-3">
             Do you have any problem while using EAZL?
@@ -80,9 +80,9 @@ const Dashboard = () => {
 
       <main className="w-[60%] p-6 bg-gray-100 overflow-y-auto">
         {formType === "artworks" ? (
-          <div>
+          <div className="flex flex-col gap-10">
 
-            <h1 className="text-2xl text-center">Your Artworks</h1>
+            <h1 className="text-4xl text-center">Your Artworks</h1>
           <div className="grid grid-cols-3 gap-6">
             {["artwork1", "artwork2", "artwork3"].map((art, idx) => (
               <div
@@ -90,9 +90,9 @@ const Dashboard = () => {
                 className="bg-white rounded-xl shadow p-3 flex flex-col gap-2"
               >
                 <img
-                  src={`/images/${art}.png`}
-                  width={250}
-                  height={200}
+                  src={`/art.jpeg`}
+                  width={200}
+                  height={150}
                   alt="title"
                   className="rounded-lg"
                 />
@@ -116,9 +116,9 @@ const Dashboard = () => {
       <aside className="w-[25%] bg-white shadow-md p-6 flex flex-col gap-6">
         <div className="bg-gray-50 rounded-xl p-4 text-center flex flex-col gap-3">
           <img
-            src="/images/userImage.png"
+            src="/avatar.png"
             alt="user"
-            className="w-20 h-20 rounded-full mx-auto"
+            className="w-30 h-30 rounded-full border border-gray-300 mx-auto"
           />
           <p className="font-semibold">Name</p>
           <p className="text-gray-500 text-sm">@username</p>

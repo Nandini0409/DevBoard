@@ -107,8 +107,9 @@ const callback = async (req, res, next) => {
 
 const emailSignup = async (req, res, next) => {
   const { email, name, password, userName } = req.body
+  console.log('req received', req.body)
   try {
-    if (!name || !email || !password || !userName) {
+    if (!name || !email || !password) {
       const error = new Error('Missing one or more required feilds!')
       error.status = 400
       throw error
@@ -127,11 +128,12 @@ const emailSignup = async (req, res, next) => {
       throw error
     }
 
-    const newArtisan = new Artisan({ email, name, password, userName, userAuthType: 'email' })
+    const newArtisan = new Artisan({ email, name, password, userAuthType: 'email' })
     try {
       await newArtisan.save()
     }
     catch (e) {
+      console.log(e)
       const error = new Error('Database insertion failed!')
       error.status = 500
       throw error
@@ -150,6 +152,7 @@ const emailSignup = async (req, res, next) => {
 }
 
 const emailLogin = async (req, res, next) => {
+  console.log('login req received', req.body)
   try {
     const { email, password } = req.body
     if (!email || !password) {
