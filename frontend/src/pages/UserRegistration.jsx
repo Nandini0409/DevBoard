@@ -40,32 +40,6 @@ ${jsonRespose.params}`
         <p className="text-gray-700 mb-4 font-medium">Sign up using Email</p>
 
 
-
-
-
-
-        {/* <form className="space-y-5">
-          <input
-            type="text"
-            placeholder="Your Name"
-            className="w-full p-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-400"
-          />
-          <input
-            type="email"
-            placeholder="Your Email"
-            className="w-full p-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-400"
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            className="w-full p-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-400"
-          />
-
-          <button className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold rounded-xl py-4 shadow-md transition">
-            Sign Up
-          </button>
-        </form> */}
-
         {formType === "signup"
           &&
           <div>

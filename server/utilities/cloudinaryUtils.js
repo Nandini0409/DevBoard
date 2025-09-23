@@ -8,11 +8,15 @@ cloudinary.config({
 })
 
 const uploadToCloud = async (file, folder) => {
+  console.log("Uploading file to Cloudinary:", file)
   return new Promise((resolve, reject) => {
-    const uploadStream = cloudConfig.uploader.upload_stream(
-      { resource_type: 'image', folder: folder },
+    const uploadStream = cloudinary.uploader.upload_stream(
+      { resource_type: 'auto', folder: folder },
       (error, result) => {
-        if (error) return reject(error)
+        if (error) {
+          console.log("Cloudinary upload error:", error)
+          return reject(error)
+        }
         resolve(result)
       }
     )

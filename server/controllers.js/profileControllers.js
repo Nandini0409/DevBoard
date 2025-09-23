@@ -33,6 +33,7 @@ const getProfile = async (req, res, next) => {
 }
 
 const updateProfile = async (req, res, next) => {
+  console.log("Received profile update request")
   try {
     const token = req.cookies.access_jwt
     if (!token) {
@@ -52,6 +53,7 @@ const updateProfile = async (req, res, next) => {
       let uploadResult = null
       if (req.file) {
         try {
+          console.log(req.file, "hiiiiiii")
           uploadResult = await uploadToCloud(req.file, 'profile_images')
         }
         catch (e) {
@@ -79,7 +81,7 @@ const updateProfile = async (req, res, next) => {
         error.status = 500
         throw error
       }
-      return res.status(200).json({ message: 'profile updation successful', user: updatedArtisanrtisan })
+      return res.status(200).json({ message: 'profile updation successful', user: updatedArtisan })
     }
     else {
       const error = new Error(isVerified.data)
