@@ -2,10 +2,11 @@ import { useState, useEffect } from "react"
 import { HomeIcon, UserIcon, PhotoIcon, LinkIcon } from "@heroicons/react/24/solid"
 
 import { getProfile } from "../utils/profile"
+import getArtwork from "../utils/getArtwork"
 
 import Profile from "../components/sections/DashboardSection/Profile"
 import SocialLinks from "../components/sections/DashboardSection/Socials"
-import AddArtworks from "../components/sections/DashboardSection/addArtworks"
+import AddArtworks from "../components/sections/DashboardSection/Artwork"
 
 const Dashboard = () => {
   const [formType, setFormType] = useState("artworks")
@@ -24,10 +25,16 @@ const Dashboard = () => {
       workemail: "",
     }
   })
+  const [artworks, setArtworks] = useState([])
+
 
   const fetchProfile = async () => {
     const data = await getProfile()
+    const artworkData = await getArtwork()
+    setArtworks(artworkData.images || [])
+    console.log(artworkData)
     setProfile(data)
+    console.log(data)
   }
 
   useEffect(() => {
@@ -106,21 +113,22 @@ const Dashboard = () => {
           <div className="flex flex-col gap-10">
 
             <h1 className="text-4xl text-center">Your Artworks</h1>
+            <button onClick={() => setFormType("artworkForm")}>Upload Artwork</button>
             <div className="grid grid-cols-3 gap-6">
-              {["artwork1", "artwork2", "artwork3"].map((art, idx) => (
+              {artworks.map((art, idx) => (
                 <div
                   key={idx}
                   className="bg-white rounded-xl shadow p-3 flex flex-col gap-2"
                 >
                   <img
-                    src={`/art.jpeg`}
+                    src={art.url}
                     width={200}
                     height={150}
                     alt="title"
                     className="rounded-lg"
                   />
-                  <p className="font-semibold text-sm">Title</p>
-                  <p className="text-xs text-gray-500">Description</p>
+                  <p className="font-semibold text-sm">{art.title}</p>
+                  <p className="text-xs text-gray-500">{art.description}</p>
                 </div>
               ))}
             </div>
@@ -128,25 +136,36 @@ const Dashboard = () => {
         ) : null}
 
         {formType === "profile" && <Profile userData={profile} setUserData={setProfile} />}
-        {formType === "artworkForm" && <AddArtworks />}
+        {formType === "artworkForm" && <AddArtworks artworks={artworks} setArtworks={setArtworks} />}
         {formType === "socials" && <SocialLinks userData={profile} setUserData={setProfile} />}
       </main>
 
       <aside className="w-[25%] bg-white shadow-md p-6 flex flex-col gap-6">
         <div className="bg-gray-50 rounded-xl p-4 text-center flex flex-col gap-3">
           <img
-            src="/avatar.png"
+            src={profile?.profileImage?.url ? profile.profileImage.url : "/avatar.png"}
             alt="user"
             className="w-30 h-30 rounded-full border border-gray-300 mx-auto"
           />
           <p className="font-semibold">{profile.name || ""}</p>
           <p className="text-gray-500 text-sm">{profile.userName || ""}</p>
           <p className="text-xs text-gray-600">{profile.bio || ""}</p>
-          <button className="bg-black text-white rounded-lg px-4 py-2 text-sm hover:bg-gray-800">
+          <button 
+          className="bg-black text-white rounded-lg px-4 py-2 text-sm hover:bg-gray-800"
+          onClick={() => setFormType("profile")}
+          >
             Update profile
           </button>
-          <p className="text-xs text-gray-500">Links user has added</p>
-          <button className="border border-gray-300 rounded-lg px-4 py-2 text-sm hover:bg-gray-100">
+          <div>
+            {Object.entries(profile.socialLinks || {}).map((link, idx)=>(
+              console.log(link),
+              <a key={idx} href={link[1]} className="text-xs text-blue-500 block">{link[0]}</a>
+            ))}
+          </div>
+          <button 
+          className="border border-gray-300 rounded-lg px-4 py-2 text-sm hover:bg-gray-100"
+          onClick={() => setFormType("socials")}
+          >
             Update links
           </button>
         </div>

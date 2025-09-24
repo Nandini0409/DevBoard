@@ -9,9 +9,12 @@ cloudinary.config({
 
 const uploadToCloud = async (file, folder) => {
   console.log("Uploading file to Cloudinary:", file)
+  if (!file || !file.buffer) {
+    throw new Error("File buffer is missing.");
+  }
   return new Promise((resolve, reject) => {
     const uploadStream = cloudinary.uploader.upload_stream(
-      { resource_type: 'auto', folder: folder },
+      { resource_type: 'image', folder: folder },
       (error, result) => {
         if (error) {
           console.log("Cloudinary upload error:", error)

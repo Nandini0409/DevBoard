@@ -1,6 +1,6 @@
 const Artisan = require('../Database/models/artisans')
 const { verifyToken } = require('../utilities/tokenUtils')
-const uploadToCloud = require('../utilities/cloudinaryUtils')
+const {uploadToCloud} = require('../utilities/cloudinaryUtils')
 
 
 const getProfile = async (req, res, next) => {
@@ -53,7 +53,6 @@ const updateProfile = async (req, res, next) => {
       let uploadResult = null
       if (req.file) {
         try {
-          console.log(req.file, "hiiiiiii")
           uploadResult = await uploadToCloud(req.file, 'profile_images')
         }
         catch (e) {
@@ -96,7 +95,7 @@ const updateProfile = async (req, res, next) => {
 
 const updateSocials = async (req, res, next) => {
   try {
-
+console.log("hiii")
     const token = req.cookies.access_jwt
     if (!token) {
       const error = new Error('token is missing')

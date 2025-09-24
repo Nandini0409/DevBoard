@@ -1,28 +1,40 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 const Socials = ({ userData, setUserData }) => {
-  // const [socialLinks, setSocialLinks] = useState({
-  //   instagram: "",
-  //   linkedin: "",
-  //   website: "",  
-  //   behance: "",
-  //   dribbble: "",
-  //   workemail: "",
-  // })
-  console.log(userData.socialLinks)
+  console.log(userData)
+  const [socialLinks, setSocialLinks] = useState({
+    instagram: "",
+    linkedin: "",
+    website: "",  
+    behance: "",
+    dribbble: "",
+    workemail: "",
+  })
+
+    useEffect(() => {
+    if (userData?.socialLinks) {
+      setSocialLinks(userData.socialLinks)
+    }
+  }, [userData])
+
+
   const updateSocialLinks = async (e) => {
     e.preventDefault()
-    const response = await fetch(`${import.meta.env.VITE_URL / users / socials}`, {
+    const response = await fetch(`${import.meta.env.VITE_URL}/users/socials`, {
       method: 'PUT',
       credentials: 'include',
-      body: JSON.stringify(userData.socialLinks),
+      body: JSON.stringify(socialLinks),
       headers: {
         'Content-Type': 'application/json',
       }
     })
+    if (!response.ok) {
+      alert("Error updating socials")
+      return
+    }
     const jsonResponse = await response.json()
     console.log(jsonResponse)
-
+    setUserData(prev => ({ ...prev, socialLinks }))
   }
 
   return (
@@ -35,14 +47,8 @@ const Socials = ({ userData, setUserData }) => {
             <input
               type="text"
               id="instagram"
-              onChange={(e) => setUserData({
-                ...userData,
-                socialLinks: {
-                  ...userData.socialLinks,
-                  instagram: e.target.value || ""
-                }
-              })}
-              value={userData.socialLinks.instagram || ""}
+              onChange={(e) => setSocialLinks({...socialLinks, instagram: e.target.value})}
+              value={socialLinks.instagram || ""}
               name="instagram"
               placeholder="Instagram URL"
             />
@@ -52,14 +58,8 @@ const Socials = ({ userData, setUserData }) => {
             <input
               type="text"
               id="linkedin"
-              onChange={(e) => setUserData({
-                ...userData,
-                socialLinks: {
-                  ...userData.socialLinks,
-                  linkedin: e.target.value || ""
-                }
-              })}
-              value={userData.socialLinks.linkedin || ""}
+              onChange={(e) => setSocialLinks({...socialLinks, linkedin: e.target.value})}
+              value={socialLinks?.linkedin||""}
               name="linkedin"
               placeholder="LinkedIn URL"
             />
@@ -69,31 +69,19 @@ const Socials = ({ userData, setUserData }) => {
             <input
               type="text"
               id="behance"
-              onChange={(e) => setUserData({
-                ...userData,
-                socialLinks: {
-                  ...userData.socialLinks,
-                  behance: e.target.value || ""
-                }
-              })}
-              value={userData.socialLinks.behance || ""}
+              onChange={(e) => setSocialLinks({...socialLinks, behance: e.target.value})}
+              value={socialLinks?.behance||""}
               name="behance"
               placeholder="Behance URL"
             />
           </div>
           <div>
-            <label htmlFor="dribbble">Dribble</label>
+            <label htmlFor="dribble">Dribble</label>
             <input
               type="text"
               id="dribble"
-              onChange={(e) => setUserData({
-                ...userData,
-                socialLinks: {
-                  ...userData.socialLinks,
-                  dribble: e.target.value || ""
-                }
-              })}
-              value={userData.socialLinks.dribble || ""}
+              onChange={(e) => setSocialLinks({...socialLinks, dribble: e.target.value})}
+              value={socialLinks?.dribble||""}
               name="dribble"
               placeholder="Dribble URL"
             />
@@ -103,14 +91,8 @@ const Socials = ({ userData, setUserData }) => {
             <input
               type="email"
               id="workemail"
-              onChange={(e) => setUserData({
-                ...userData,
-                socialLinks: {
-                  ...userData.socialLinks,
-                  workemail: e.target.value || ""
-                }
-              })}
-              value={userData.socialLinks.workemail || ""}
+              onChange={(e) => setSocialLinks({...socialLinks, workemail: e.target.value})}
+              value={socialLinks?.workemail||""}
               name="workemail"
               placeholder="Work Email"
             />
@@ -120,14 +102,8 @@ const Socials = ({ userData, setUserData }) => {
             <input
               type="text"
               id="website"
-              onChange={(e) => setUserData({
-                ...userData,
-                socialLinks: {
-                  ...userData.socialLinks,
-                  website: e.target.value || ""
-                }
-              })}
-              value={userData.socialLinks.website || ""}
+              onChange={(e) => setSocialLinks({...socialLinks, website: e.target.value})}
+              value={socialLinks?.website||""}
               name="website"
               placeholder="Website URL"
             />

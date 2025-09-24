@@ -45,23 +45,36 @@
 
 import { useState } from "react";
 
-const AddArtworks = () => {
-  const [preview, setPreview] = useState(null);
+const Artworks = (artworks, setArtworks) => {
+  const [preview, setPreview] = useState(null)
+  const [artworkData, setArtworkData] = useState({
+    title: "",
+    description: "",
+    artwork: null,
+  })
 
   const uploadArtwork = async (e) => {
     e.preventDefault();
-    const formdata = new FormData(e.target);
-    const response = await fetch("http://localhost:3000/api/artwork", {
+    const formdata = new FormData(e.target)
+    console.log(...formdata)
+    const response = await fetch(`${import.meta.env.VITE_URL}/artworks`, {
       method: "POST",
       body: formdata,
       credentials: "include",
-    });
-    const data = await response.json();
-    console.log(data);
+    })
+    const data = await response.json()
+    console.log(data)
     if (data.status === 201) {
-      alert("Artwork uploaded.");
+      alert("Artwork uploaded.")
+      setArtworks([...artworks, data.artwork])
+      setPreview(null)
+      setArtworkData({
+        title: "",
+        description: "",
+        artwork: null,
+      })
     }
-  };
+  }
 
   return (
     <section
@@ -75,15 +88,17 @@ const AddArtworks = () => {
         encType="multipart/form-data"
         className="space-y-4"
       >
-        {/* Upload Field with Preview */}
         <div>
           <label className="block text-gray-700 mb-1">Upload Artwork:</label>
           <input
             type="file"
             name="artwork"
-            onChange={(e) =>
+            onChange={(e) => {
               setPreview(URL.createObjectURL(e.target.files[0]))
+              setArtworkData({ ...artworkData, artwork: e.target.files[0] })
             }
+            }
+            required
             className="block w-full text-gray-600"
           />
           {preview && (
@@ -97,7 +112,6 @@ const AddArtworks = () => {
           )}
         </div>
 
-        {/* Title */}
         <div>
           <label htmlFor="title" className="block text-gray-700 mb-1">
             Title:
@@ -107,11 +121,11 @@ const AddArtworks = () => {
             id="title"
             name="title"
             required
+            onChange={(e)=>setArtworkData({...artworkData, title: e.target.value})}
             className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-400"
           />
         </div>
 
-        {/* Description */}
         <div>
           <label htmlFor="description" className="block text-gray-700 mb-1">
             Description:
@@ -120,12 +134,12 @@ const AddArtworks = () => {
             id="description"
             name="description"
             required
+            onChange={(e)=>setArtworkData({...artworkData, description: e.target.value})}
             rows="3"
             className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-400"
           ></textarea>
         </div>
 
-        {/* Save button */}
         <button
           type="submit"
           className="bg-red-500 text-white px-6 py-2 rounded-full font-semibold hover:bg-red-600 transition"
@@ -133,18 +147,8 @@ const AddArtworks = () => {
           Save Artwork
         </button>
       </form>
-
-      {/* Floating + button for adding more artworks */}
-      <div className="flex justify-end mt-6">
-        <button
-          type="button"
-          className="bg-gradient-to-r from-red-400 to-orange-400 text-white w-12 h-12 flex items-center justify-center rounded-full shadow-lg text-2xl font-bold hover:scale-110 transition"
-        >
-          +
-        </button>
-      </div>
     </section>
-  );
-};
+  )
+}
 
-export default AddArtworks;
+export default Artworks

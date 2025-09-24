@@ -1,4 +1,4 @@
-const uploadToCloud = require('../utilities/cloudinaryUtils')
+const { uploadToCloud } = require('../utilities/cloudinaryUtils')
 const { verifyToken } = require('../utilities/tokenUtils')
 const Artwork = require('../Database/models/artwork')
 
@@ -24,18 +24,25 @@ const uploadArtwork = async (req, res, next) => {
       throw error
     }
 
+    console.log(isVerified.data.id)
     let artisanArtworks = await Artwork.findOne({ artisan: isVerified.data.id })
+    if (!artisanArtworks) {
+      artisanArtworks = new Artwork({ artisan: isVerified.data.id, images: [] })
+    }
+
     if (!req.file) {
       const error = new Error('image file missing!')
       error.status = 400
       throw error
     }
 
-    if (artisanArtworks.images.length >= 10) {
-      const error = new Error('Maximum 10 artworks allowed!')
-      error.status = 400
-      throw error
-    }
+
+    console.log(artisanArtworks)
+      if (artisanArtworks.images.length >= 10) {
+        const error = new Error('Maximum 10 artworks allowed!')
+        error.status = 400
+        throw error
+      }
 
     let uploadResult
     try {
